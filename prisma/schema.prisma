@@ -9,17 +9,57 @@ datasource db {
   provider = "mysql"
   url      = env("DATABASE_URL")
 }
+
 //defining our database
 model User {
-  id Int @id @default(autoincrement())//int is Integer
-  name String
+  // id Int @id @default(autoincrement())
+  id             String          @id @default(uuid()) //this uuid is more secure because it deoesn't allow the user to know his/her unique identifier
+  age            Int
+  name           String
+  email          String          @unique
+  role           Role            @default(BASIC)
+  preference     Json? //the uestion mark means that it is optional
+  // blob Bytes
+  // blob Unsupported("")
+  // loads BigInt //this data type is usefull when you want to deal with a great interger
+  WrittenPosts   Post[]          @relation("WrittenPosts") //[] means there is going to be a lot of data 
+  favoritePosts  Post[]          @relation("FavoritePosts") //you do this if you want to link to a specific field in other table or model
+  userPreference UserPreference?
+
+  @@unique([age, name]) //here we are not allowing to have 2 users with the same name and the same age
+  @@index([email]) //this gives emails indexes and this can be very helpfull like in situations of sorting
 }
-//migrating
 
+model UserPreference {
+  id          String  @id @default(uuid())
+  EmailUpdate Boolean
+  user        User    @relation(fields: [userId], references: [id])
+  userId      String  @unique //this is marked as unique because it is a one-one relat.. and notice that in the referenced table we are not getting an array of value
+}
 
+model Post {
+  id            String     @id @default(uuid())
+  title         String
+  averageRating Float
+  rating        Float
+  createdAt     DateTime   @default(now())
+  updateAt      DateTime   @updatedAt //this is going to Automatically update the date 
+  author        User       @relation("WrittenPosts", fields: [authorId], references: [id]) //the first Argument is like a label to represent this field ,You can name it as you wish
+  authorId      String //this is acting as a foreign key
+  favoriteBy    User?      @relation("FavoritePosts", fields: [favoriteByid], references: [id])
+  favoriteByid  String?
+  categories    Category[]
+  //@@id([title,authorId])//this means that instead of having an id, the id going to be given to our title and the authorId should represent the id of our MOdel
+}
 
+model Category {
+  id    String @id @default(uuid())
+  name  String @unique
+  posts Post[]
+}
 
-
-
-
-
+enum Role {
+  BASIC
+  EDITOR
+  ADMIN
+}

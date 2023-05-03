@@ -27,10 +27,19 @@ In software development, a development mode is a configuration or environment in
  ===>npx @prisma/client //this code will help us to use our client which will update,select ,delete and create table data when we modify our Model
  ===>npx prisma generate  //help us to generate our prisma client  library based on the data model defined in the Prisma schema. 
 
+---------------------------------------UUID---------------------------------------------------------------------
+uuid() is a built-in function in Prisma that generates a unique identifier using the Universally Unique Identifier (UUID) algorithm. The id field in the model is decorated with the @default(uuid()) attribute, 
+which means that if no value is provided for the id field during the creation of a new record, Prisma will automatically generate a unique ID for that field using the uuid() function.
+------------------------------------@default()---------------------------------------------------------------------------
+In Prisma, the @default attribute is used to specify a default value for a field in the database. When a record is inserted and a value for the field is not provided, the default value specified in the schema will be used instead.
 
-
-
-
+In the example you provided (id String @id @default(uuid())), the @default(uuid()) specifies that the id field should be a String type with a default value generated using the uuid() function, which generates a unique identifier using the UUID (Universally Unique Identifier) standard. 
+This means that if a record is inserted without an id value, a new UUID will be automatically generated and used as the id.
+---------------------------------AUTO FORMATING---------------------------------------------------
+   SHIFT+ALT+F
+------------------------------------------------------------
+==> FIELD LEVEL ATTRIBUTE:this is an attribute applied on a single field 
+==> BLOCK LEVEL ATTRIBUTE:this is an attribute that is on its own line
 
 
 
