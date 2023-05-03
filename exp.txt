@@ -42,7 +42,7 @@ This means that if a record is inserted without an id value, a new UUID will be 
 ==> BLOCK LEVEL ATTRIBUTE:this is an attribute that is on its own line
 
 
-
+///??? Whenever you make change to a model you have to migrate 
 
 
 
