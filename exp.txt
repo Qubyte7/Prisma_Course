@@ -1,0 +1,39 @@
+-----------------------------Initializing Project------------------------------------
+ ===>npx prisma init  --datasource-provider DTABASENAME
+----------------------------TS CONFG.JSON FOR APRIMA----------------------------------------
+
+
+
+
+---------------------------------Generator provider  and datasource-----------------------------------------
+                     ==>Generator
+In Prisma, the generator client is a tool that generates a database client for a specific programming language and database.
+ It generates all the types and CRUD (Create, Read, Update, Delete) methods for the database tables that have been defined in the Prisma schema file.
+                     ==>datasource
+---------------------------MIGRATING--------------------------------------------
+this a way of saying to prisma to migrate/contruct our Created Model to our database 
+WE RUN THIS COMMAND IN TERMINAL after we have Created our Model (
+   = ===>npx prisma migrate dev --name init
+
+    npx: This is a tool that allows you to run a package without installing it globally. In this case, it is being used to run the prisma package.
+prisma migrate: This is a command that is used to generate and apply database schema migrations.
+dev: This flag is used to run the migration in development mode.
+--name init: This flag is used to name the migration. In this case, it is named init.
+So when you run this command, Prisma will generate a new migration with the name init.
+ This migration will contain all the changes you have made to your Prisma schema since the last migration. Prisma will then apply this migration to your database, updating the schema in the database to match the updated schema in your Prisma schema file.
+------------------------What is DEV (development Mode)-------------------------------
+In software development, a development mode is a configuration or environment in which developers can work on their code and test their applications without affecting the production environment or end-users. In a development mode, developers can test new features, fix bugs, and make changes to the application without risking data loss or disrupting users.
+----------------------------------------------------------------------------------------------------
+ ===>npx @prisma/client //this code will help us to use our client which will update,select ,delete and create table data when we modify our Model
+ ===>npx prisma generate  //help us to generate our prisma client  library based on the data model defined in the Prisma schema. 
+
+
+
+
+
+
+
+
+
+
+
