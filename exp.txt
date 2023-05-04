@@ -43,6 +43,9 @@ This means that if a record is inserted without an id value, a new UUID will be 
 
 
 ///??? Whenever you make change to a model you have to migrate 
+///////////////////////////////////PROBLEMS OF GENERATING///////////////////////////////////////
+ normally the generate is run through typing  ====> "npx prisma generate" ,if you meet with a problem here is the SOLUTIONS
 
-
+ SOLUTIONS:==>go out of the file and open it again
+           ==>"CTRL + the function you want to go to(ex:create funtion -->for creating a user)
 
