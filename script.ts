@@ -68,7 +68,18 @@ const findUsers = await prisma.user.findMany({
    //AND:[{email:{startsWith:"Gana"}},{name:"Ganza"},{email:{endsWith:"@gmail.com"}}]
    //OR:[{email:{startsWith:"Gana"}},{email:{endsWith:"@gmail.com"}}]
     //NOT:[{name:"Ganza"}]
-
+ 
+        ////getting using properties from anither model
+                    //for one -to-one rel
+            //  userPreference:{
+            //     EmailUpdate:true,
+            //  }  
+                  //for many-t0-many rel...
+             WrittenPosts:{ //if our users have written posts
+                every:{  //every:returns users with specified option, Some:return some users with specified opt ,none :return user without specified opt
+                    title:"Test"
+                }
+             }     
 
 
     },
@@ -90,8 +101,34 @@ console.log(findUsers.length);
 //     }
 // })
 // console.log(findUser3);
- }
+                  //UPDATING A USER
+// const UpdateUser = await prisma.user.update({
+//     where:{email:"Gana@gmail.com"},
+//     data :{email:"Ganza123@gmai.com"}
+// })
+// console.log(UpdateUser);
+        //UPDATING USERS
+// const updateUsers =await prisma.user.updateMany({
+    //where :{email:"Mugisha@gmail.com"},
+//     data:{role:"ADMIN"}
+// })
+// console.log(updateUsers);
+                //UPSERT
+// const UpdateUser2 = await prisma.user.upsert({
+//     //The upsert method tries to update a record if it exists, otherwise it creates a new record with the provided data.
+//     where:{email:"gisha@gmail.com"},
+//     update:{email:"Michael@gmail.com"},
+//     create:{email:"MichaelShami@gmail.com",name:"Michael",age:25},
+// })
+       //DELETING 
+// const deleteUser = await prisma.user.delete({
+//     where:{email:"innocecent@gmail.com"};
+// })
+// const deleteUsers = await prisma.user.deleteMany();
+// console.log(deleteUser);
 
+
+ }
 
 //cathing Error
 main()
